@@ -1,4 +1,4 @@
-SukerMarioBros
+SukerMarioBros — Swift and SpriteKit
 ==============
 
 This is a hacathon project done in like 12 hours — expect troubles :)

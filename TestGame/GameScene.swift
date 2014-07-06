@@ -179,6 +179,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         if(self.isJumping == true && (firstBody.node == self.hero || secondBody.node == self.hero)) {
             self.isJumping = false;
             self.move = .None;
+     
         }
     }
     

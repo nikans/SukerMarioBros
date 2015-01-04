@@ -22,12 +22,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     var move: MoveDirection = .None;
     var isJumping: Bool = false;
     
-    init(coder aDecoder: NSCoder!) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
         self.commonShitInit();
     }
     
-    init(size: CGSize) {
+    override  init(size: CGSize) {
         super.init(size: size);
         self.commonShitInit();
     }
@@ -39,7 +39,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         self.addChild(self.map);
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: self.frame.origin.x, y: self.frame.origin.y - 36.0, width: self.frame.size.width, height: self.frame.size.height));
-        self.physicsBody.friction = 0.0;
+        self.physicsBody?.friction = 0.0;
         self.physicsWorld.contactDelegate = self;
         //        self.physicsBody.collisionBitMask = 0;
         //        self.physicsBody.contactTestBitMask = 0;
@@ -65,10 +65,10 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
             
             someObstacle.position = CGPoint(x: x + Int(collisionsGroup.positionOffset.x) + width.toInt()!/2, y: y + Int(collisionsGroup.positionOffset.y) + height.toInt()!/2);
             someObstacle.physicsBody = SKPhysicsBody(rectangleOfSize: someObstacleSize);
-            someObstacle.physicsBody.affectedByGravity = false;
-            someObstacle.physicsBody.collisionBitMask = 0;
-            someObstacle.physicsBody.friction = 0.2;
-            someObstacle.physicsBody.restitution = 0.0;
+            someObstacle.physicsBody?.affectedByGravity = false;
+            someObstacle.physicsBody?.collisionBitMask = 0;
+            someObstacle.physicsBody?.friction = 0.2;
+            someObstacle.physicsBody?.restitution = 0.0;
             
             self.obstacles.addChild(someObstacle)
         }
@@ -82,14 +82,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         
         // Make 'im jumpy
         self.hero.physicsBody = SKPhysicsBody(circleOfRadius: self.hero.frame.size.width/2);
-        self.hero.physicsBody.friction = 0.2;
-        self.hero.physicsBody.restitution = 0;
-        self.hero.physicsBody.linearDamping = 0.0;
-        self.hero.physicsBody.allowsRotation = false;
-        self.hero.physicsBody.dynamic = true;
+        self.hero.physicsBody?.friction = 0.2;
+        self.hero.physicsBody?.restitution = 0;
+        self.hero.physicsBody?.linearDamping = 0.0;
+        self.hero.physicsBody?.allowsRotation = false;
+        self.hero.physicsBody?.dynamic = true;
         
         // Animate running
-        var marioSmall_running = SKTexture[]();
+        var marioSmall_running = [SKTexture]();
         for i in 0...2 {
             marioSmall_running.append( SKTexture(imageNamed: "marioSmall_running\(i)") );
         }
@@ -98,18 +98,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         
         self.addChild(self.hero)
         
-//        var swipeJumpGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer();
-//        self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
-//        self.swipeJumpGesture.direction = .Up;
-//        self.swipeJumpGesture.numberOfTouchesRequired = 1;
-//        if let shit = self.view {
-//            shit.addGestureRecognizer(self.swipeJumpGesture);
-//        }
+        //        var swipeJumpGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer();
+        //        self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
+        //        self.swipeJumpGesture.direction = .Up;
+        //        self.swipeJumpGesture.numberOfTouchesRequired = 1;
+        //        if let shit = self.view {
+        //            shit.addGestureRecognizer(self.swipeJumpGesture);
+        //        }
         
-//        self.view.addGestureRecognizer(swipeJumpGesture);
-//        if let shit = self.view {
-//            shit.addGestureRecognizer(swipeJumpGesture);
-//        }
+        //        self.view.addGestureRecognizer(swipeJumpGesture);
+        //        if let shit = self.view {
+        //            shit.addGestureRecognizer(swipeJumpGesture);
+        //        }
     }
     
     
@@ -119,7 +119,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
         self.swipeJumpGesture.direction = .Up;
         self.swipeJumpGesture.numberOfTouchesRequired = 1;
-        self.view.addGestureRecognizer(self.swipeJumpGesture);
+        self.view?.addGestureRecognizer(self.swipeJumpGesture);
     }
     
     func handleJumpSwipe(sender: UIGestureRecognizer) {
@@ -134,25 +134,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     }
     
     func marioJump() {
-        self.hero.physicsBody.applyImpulse(CGVector(0, 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
+        self.hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
     }
     
-
+    
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
-
+        
         for touch: AnyObject in touches {
             
             var touchMe: UITouch = touch as UITouch;
             
-//            if find(touchMe.gestureRecognizers, self.swipeJumpGesture) { continue; }
+            //            if find(touchMe.gestureRecognizers, self.swipeJumpGesture) { continue; }
             
-//            if event.touchesForGestureRecognizer(self.swipeJumpGesture).count > 0 {
-//                continue;
-//            }
-//            if touch as UIGestureRecognizer == self.swipeJumpGesture {
-//                continue;
-//            }
+            //            if event.touchesForGestureRecognizer(self.swipeJumpGesture).count > 0 {
+            //                continue;
+            //            }
+            //            if touch as UIGestureRecognizer == self.swipeJumpGesture {
+            //                continue;
+            //            }
             
             let location = touch.locationInNode(self);
             if location.x > self.hero.position.x {
@@ -171,7 +171,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
         self.move = .None;
     }
-   
+    
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody: SKPhysicsBody  = contact.bodyA;
         let secondBody: SKPhysicsBody = contact.bodyB;
@@ -184,30 +184,31 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     
     override func update(currentTime: CFTimeInterval) {
         
-        var speed: Float = 15;
+        var speed: CGFloat = 15;
         
         if self.move == .Forward {
+            
             speed = (self.map.position.x - speed - self.frame.width) * -1.0 > self.map.mapSize.width * self.map.tileSize.width ? 0 : speed;
-
+            
             self.obstacles.position.x -= speed
             self.map.position.x -= speed
-//            self.physicsWorld.gravity = CGVector(-2,-9.8);
-//            self.hero.physicsBody.applyForce(CGVector(5,0), atPoint: CGPoint(x: 0, y: self.hero.frame.size.height/2))
+            //            self.physicsWorld.gravity = CGVector(-2,-9.8);
+            //            self.hero.physicsBody.applyForce(CGVector(5,0), atPoint: CGPoint(x: 0, y: self.hero.frame.size.height/2))
         }
         else if self.move == .Backward {
             speed = self.map.position.x + speed > 0 ? 0 : speed;
             
             self.obstacles.position.x += speed
             self.map.position.x += speed
-//            self.physicsWorld.gravity = CGVector(2,-9.8);
-//            self.hero.physicsBody.applyForce(CGVector(-5,0), atPoint: CGPoint(x: self.hero.frame.size.width, y: self.hero.frame.size.height/2))
+            //            self.physicsWorld.gravity = CGVector(2,-9.8);
+            //            self.hero.physicsBody.applyForce(CGVector(-5,0), atPoint: CGPoint(x: self.hero.frame.size.width, y: self.hero.frame.size.height/2))
         }
-//        else {
-//            self.physicsWorld.gravity = CGVector(0.0,-9.8);
-//        }
-
+        //        else {
+        //            self.physicsWorld.gravity = CGVector(0.0,-9.8);
+        //        }
         
-//        self.map.position.x = -self.hero.position.x  // - self.frame.size.width / 2 + self.hero.frame.width / 2;
-//        self.obstacles.position.x = -self.hero.position.x*0.5
+        
+        //        self.map.position.x = -self.hero.position.x  // - self.frame.size.width / 2 + self.hero.frame.width / 2;
+        //        self.obstacles.position.x = -self.hero.position.x*0.5
     }
 }

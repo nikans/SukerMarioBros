@@ -1,7 +1,7 @@
 SukerMarioBros — Swift and SpriteKit
 ==============
 
-This is a hacathon project done in like 12 hours — expect troubles :)
+This is a hackathon project done in like 12 hours — expect troubles :)
 
 It builds on iOS7&8 in xCode6.2, but sprites doesn't load on iOS7 — http://stackoverflow.com/questions/24069168/swift-and-spritekit-wont-run-on-device-running-ios-7-1
 

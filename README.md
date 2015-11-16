@@ -1,6 +1,8 @@
 SukerMarioBros — Swift and SpriteKit
 ==============
 
+**UPD: working with xCode 7 & Swift 2** — Nov 17, 2015
+
 This is a hackathon project done in like 12 hours — expect troubles :)
 
 It builds on iOS7&8 in xCode6.2, but sprites doesn't load on iOS7 — http://stackoverflow.com/questions/24069168/swift-and-spritekit-wont-run-on-device-running-ios-7-1

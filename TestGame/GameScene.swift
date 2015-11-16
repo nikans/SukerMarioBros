@@ -98,18 +98,18 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         
         self.addChild(self.hero)
         
-//        var swipeJumpGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer();
-//        self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
-//        self.swipeJumpGesture.direction = .Up;
-//        self.swipeJumpGesture.numberOfTouchesRequired = 1;
-//        if let shit = self.view {
-//            shit.addGestureRecognizer(self.swipeJumpGesture);
-//        }
+        //        var swipeJumpGesture: UISwipeGestureRecognizer = UISwipeGestureRecognizer();
+        //        self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
+        //        self.swipeJumpGesture.direction = .Up;
+        //        self.swipeJumpGesture.numberOfTouchesRequired = 1;
+        //        if let shit = self.view {
+        //            shit.addGestureRecognizer(self.swipeJumpGesture);
+        //        }
         
-//        self.view.addGestureRecognizer(swipeJumpGesture);
-//        if let shit = self.view {
-//            shit.addGestureRecognizer(swipeJumpGesture);
-//        }
+        //        self.view.addGestureRecognizer(swipeJumpGesture);
+        //        if let shit = self.view {
+        //            shit.addGestureRecognizer(swipeJumpGesture);
+        //        }
     }
     
     
@@ -139,19 +139,19 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
-
+        
         for touch: AnyObject in touches {
             
             var touchMe: UITouch = touch as! UITouch;
             
-//            if find(touchMe.gestureRecognizers, self.swipeJumpGesture) { continue; }
+            //            if find(touchMe.gestureRecognizers, self.swipeJumpGesture) { continue; }
             
-//            if event.touchesForGestureRecognizer(self.swipeJumpGesture).count > 0 {
-//                continue;
-//            }
-//            if touch as UIGestureRecognizer == self.swipeJumpGesture {
-//                continue;
-//            }
+            //            if event.touchesForGestureRecognizer(self.swipeJumpGesture).count > 0 {
+            //                continue;
+            //            }
+            //            if touch as UIGestureRecognizer == self.swipeJumpGesture {
+            //                continue;
+            //            }
             
             let location = touch.locationInNode(self);
             if location.x > self.hero.position.x {
@@ -170,7 +170,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         self.move = .None;
     }
-   
+    
     func didBeginContact(contact: SKPhysicsContact) {
         let firstBody: SKPhysicsBody  = contact.bodyA;
         let secondBody: SKPhysicsBody = contact.bodyB;
@@ -192,23 +192,23 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
 
             self.obstacles.position.x -= speed
             self.map.position.x -= speed
-//            self.physicsWorld.gravity = CGVector(-2,-9.8);
-//            self.hero.physicsBody.applyForce(CGVector(5,0), atPoint: CGPoint(x: 0, y: self.hero.frame.size.height/2))
+            //            self.physicsWorld.gravity = CGVector(-2,-9.8);
+            //            self.hero.physicsBody.applyForce(CGVector(5,0), atPoint: CGPoint(x: 0, y: self.hero.frame.size.height/2))
         }
         else if self.move == .Backward {
             speed = self.map.position.x + speed > 0 ? 0 : speed;
             
             self.obstacles.position.x += speed
             self.map.position.x += speed
-//            self.physicsWorld.gravity = CGVector(2,-9.8);
-//            self.hero.physicsBody.applyForce(CGVector(-5,0), atPoint: CGPoint(x: self.hero.frame.size.width, y: self.hero.frame.size.height/2))
+            //            self.physicsWorld.gravity = CGVector(2,-9.8);
+            //            self.hero.physicsBody.applyForce(CGVector(-5,0), atPoint: CGPoint(x: self.hero.frame.size.width, y: self.hero.frame.size.height/2))
         }
-//        else {
-//            self.physicsWorld.gravity = CGVector(0.0,-9.8);
-//        }
-
+        //        else {
+        //            self.physicsWorld.gravity = CGVector(0.0,-9.8);
+        //        }
         
-//        self.map.position.x = -self.hero.position.x  // - self.frame.size.width / 2 + self.hero.frame.width / 2;
-//        self.obstacles.position.x = -self.hero.position.x*0.5
+        
+        //        self.map.position.x = -self.hero.position.x  // - self.frame.size.width / 2 + self.hero.frame.width / 2;
+        //        self.obstacles.position.x = -self.hero.position.x*0.5
     }
 }

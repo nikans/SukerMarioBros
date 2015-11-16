@@ -18,7 +18,6 @@
 		D01CF1DF195F3AE700AA23E3 /* LFCGzipUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D01CF1DE195F3AE700AA23E3 /* LFCGzipUtility.m */; };
 		D01CF1E1195F41D600AA23E3 /* super_mario.png in Resources */ = {isa = PBXBuildFile; fileRef = D01CF1E0195F41D600AA23E3 /* super_mario.png */; };
 		D01CF1E3195F4DF300AA23E3 /* level.tmx in Resources */ = {isa = PBXBuildFile; fileRef = D01CF1E2195F4DF300AA23E3 /* level.tmx */; };
-		D03DF982195FD28700568204 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D03DF981195FD28700568204 /* GameScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +49,6 @@
 		D01CF1DE195F3AE700AA23E3 /* LFCGzipUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFCGzipUtility.m; sourceTree = "<group>"; };
 		D01CF1E0195F41D600AA23E3 /* super_mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = super_mario.png; sourceTree = "<group>"; };
 		D01CF1E2195F4DF300AA23E3 /* level.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = level.tmx; sourceTree = "<group>"; };
-		D03DF981195FD28700568204 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,7 +94,6 @@
 			children = (
 				D01CF1AD195F111900AA23E3 /* AppDelegate.swift */,
 				D01CF1B1195F111900AA23E3 /* GameScene.swift */,
-				D03DF981195FD28700568204 /* GameScene.sks */,
 				D01CF1B3195F111900AA23E3 /* GameViewController.swift */,
 				D01CF1B5195F111900AA23E3 /* Main.storyboard */,
 				D01CF1E2195F4DF300AA23E3 /* level.tmx */,
@@ -229,7 +226,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D01CF1B9195F111900AA23E3 /* Images.xcassets in Resources */,
-				D03DF982195FD28700568204 /* GameScene.sks in Resources */,
 				D01CF1E1195F41D600AA23E3 /* super_mario.png in Resources */,
 				D01CF1B7195F111900AA23E3 /* Main.storyboard in Resources */,
 				D01CF1E3195F4DF300AA23E3 /* level.tmx in Resources */,

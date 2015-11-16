@@ -22,12 +22,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     var move: MoveDirection = .None;
     var isJumping: Bool = false;
     
-    init(coder aDecoder: NSCoder!) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);
         self.commonShitInit();
     }
     
-    init(size: CGSize) {
+    override init(size: CGSize) {
         super.init(size: size);
         self.commonShitInit();
     }
@@ -39,7 +39,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         self.addChild(self.map);
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: CGRect(x: self.frame.origin.x, y: self.frame.origin.y - 36.0, width: self.frame.size.width, height: self.frame.size.height));
-        self.physicsBody.friction = 0.0;
+        self.physicsBody?.friction = 0.0;
         self.physicsWorld.contactDelegate = self;
         //        self.physicsBody.collisionBitMask = 0;
         //        self.physicsBody.contactTestBitMask = 0;
@@ -50,25 +50,25 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         // Setting obstacles
         let collisionsGroup: TMXObjectGroup = self.map.groupNamed("Collisions");
         for(var i = 0; i < collisionsGroup.objects.count; i++) {
-            let collisionObject = collisionsGroup.objects.objectAtIndex(i) as NSDictionary;
+            let collisionObject = collisionsGroup.objects.objectAtIndex(i) as! NSDictionary;
             
-            println(collisionObject);
+            print(collisionObject);
             
-            let width = collisionObject.objectForKey("width") as String;
-            let height = collisionObject.objectForKey("height") as String;
-            let someObstacleSize = CGSize(width: width.toInt()!, height: height.toInt()!);
+            let width = collisionObject.objectForKey("width") as! String;
+            let height = collisionObject.objectForKey("height") as! String;
+            let someObstacleSize = CGSize(width: Int(width)!, height: Int(height)!);
             
             let someObstacle = SKSpriteNode(color: UIColor.clearColor(), size: someObstacleSize);
             
-            let y = collisionObject.objectForKey("y") as Int;
-            let x = collisionObject.objectForKey("x") as Int;
+            let y = collisionObject.objectForKey("y") as! Int;
+            let x = collisionObject.objectForKey("x") as! Int;
             
-            someObstacle.position = CGPoint(x: x + Int(collisionsGroup.positionOffset.x) + width.toInt()!/2, y: y + Int(collisionsGroup.positionOffset.y) + height.toInt()!/2);
+            someObstacle.position = CGPoint(x: x + Int(collisionsGroup.positionOffset.x) + Int(width)!/2, y: y + Int(collisionsGroup.positionOffset.y) + Int(height)!/2);
             someObstacle.physicsBody = SKPhysicsBody(rectangleOfSize: someObstacleSize);
-            someObstacle.physicsBody.affectedByGravity = false;
-            someObstacle.physicsBody.collisionBitMask = 0;
-            someObstacle.physicsBody.friction = 0.2;
-            someObstacle.physicsBody.restitution = 0.0;
+            someObstacle.physicsBody?.affectedByGravity = false;
+            someObstacle.physicsBody?.collisionBitMask = 0;
+            someObstacle.physicsBody?.friction = 0.2;
+            someObstacle.physicsBody?.restitution = 0.0;
             
             self.obstacles.addChild(someObstacle)
         }
@@ -82,14 +82,14 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         
         // Make 'im jumpy
         self.hero.physicsBody = SKPhysicsBody(circleOfRadius: self.hero.frame.size.width/2);
-        self.hero.physicsBody.friction = 0.2;
-        self.hero.physicsBody.restitution = 0;
-        self.hero.physicsBody.linearDamping = 0.0;
-        self.hero.physicsBody.allowsRotation = false;
-        self.hero.physicsBody.dynamic = true;
+        self.hero.physicsBody?.friction = 0.2;
+        self.hero.physicsBody?.restitution = 0;
+        self.hero.physicsBody?.linearDamping = 0.0;
+        self.hero.physicsBody?.allowsRotation = false;
+        self.hero.physicsBody?.dynamic = true;
         
         // Animate running
-        var marioSmall_running = SKTexture[]();
+        var marioSmall_running = [SKTexture]();
         for i in 0...2 {
             marioSmall_running.append( SKTexture(imageNamed: "marioSmall_running\(i)") );
         }
@@ -119,7 +119,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
         self.swipeJumpGesture.direction = .Up;
         self.swipeJumpGesture.numberOfTouchesRequired = 1;
-        self.view.addGestureRecognizer(self.swipeJumpGesture);
+        self.view!.addGestureRecognizer(self.swipeJumpGesture);
     }
     
     func handleJumpSwipe(sender: UIGestureRecognizer) {
@@ -134,16 +134,15 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     }
     
     func marioJump() {
-        self.hero.physicsBody.applyImpulse(CGVector(0, 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
+        self.hero.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
     }
     
-
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         /* Called when a touch begins */
 
         for touch: AnyObject in touches {
             
-            var touchMe: UITouch = touch as UITouch;
+            var touchMe: UITouch = touch as! UITouch;
             
 //            if find(touchMe.gestureRecognizers, self.swipeJumpGesture) { continue; }
             
@@ -164,11 +163,11 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         }
     }
     
-    override func touchesEnded(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.move = .None;
     }
     
-    override func touchesCancelled(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         self.move = .None;
     }
    
@@ -184,10 +183,12 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     
     override func update(currentTime: CFTimeInterval) {
         
-        var speed: Float = 15;
+        var speed: CGFloat = 15;
         
         if self.move == .Forward {
-            speed = (self.map.position.x - speed - self.frame.width) * -1.0 > self.map.mapSize.width * self.map.tileSize.width ? 0 : speed;
+            let s = (self.map.position.x - speed - self.frame.width) * -1.0
+            let w = self.map.mapSize.width * self.map.tileSize.width
+            speed = s > w ? 0 : speed;
 
             self.obstacles.position.x -= speed
             self.map.position.x -= speed

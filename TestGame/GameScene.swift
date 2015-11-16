@@ -119,7 +119,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
         self.swipeJumpGesture.addTarget(self, action: Selector("handleJumpSwipe:"));
         self.swipeJumpGesture.direction = .Up;
         self.swipeJumpGesture.numberOfTouchesRequired = 1;
-        self.view!.addGestureRecognizer(self.swipeJumpGesture);
+        self.view?.addGestureRecognizer(self.swipeJumpGesture);
     }
     
     func handleJumpSwipe(sender: UIGestureRecognizer) {
@@ -134,7 +134,7 @@ class GameScene: SKScene, UIGestureRecognizerDelegate, SKSceneDelegate, SKPhysic
     }
     
     func marioJump() {
-        self.hero.physicsBody!.applyImpulse(CGVector(dx: 0, dy: 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
+        self.hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 30), atPoint: CGPoint(x: self.hero.frame.width/2, y: 0));
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

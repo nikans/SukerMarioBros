@@ -19,10 +19,3 @@ I didn't have time to process any collisions. Mario can move through obstacles, 
 Have fun and contact me if you have issues.
 
 ![](http://nikans.com/assets/portfolio/projects/mario/swift-1.jpeg)
-
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen1.png)
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen2.png)
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen3.png)
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen4.png)
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen5.png)
-![](http://nikans.com/assets/portfolio/projects/mario/mario-screen6.png)
